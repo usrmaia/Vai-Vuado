@@ -1,0 +1,49 @@
+banco.executarComando("""
+    CREATE TABLE IF NOT EXISTS adm_empresa_contratante(
+        id_adm_empresa INTEGER PRIMARY KEY AUTOINCREMENT, 
+        nome VARCHAR(255) NOT NULL, 
+        email VARCHAR(255) NOT NULL,
+        senha VARCHAR(255) NOT NULL,
+        endereco VARCHAR(255) NOT NULL
+    )
+""")
+
+banco.executarComando("""
+    CREATE TABLE IF NOT EXISTS produtos(
+        id_produto INTEGER PRIMARY KEY AUTOINCREMENT, 
+        id_adm_empresa INTEGER NOT NULL,
+        nome VARCHAR(255) NOT NULL, 
+        categoria VARCHAR(255) NOT NULL,
+        medidas VARCHAR(255) NOT NULL,
+        imagem VARCHAR(255) NOT NULL,
+        descricao VARCHAR(255) NOT NULL,
+        FOREIGN KEY (id_adm_empresa) REFERENCES adm_empresa_contratante (id_adm_empresa)
+    )
+""")
+
+banco.executarComando("""
+    CREATE TABLE IF NOT EXISTS coletas(
+        id_coleta INTEGER PRIMARY KEY AUTOINCREMENT, 
+        id_produto INTEGER NOT NULL,
+        id_adm_empresa INTEGER NOT NULL,
+        numero_de_rastreio INT NOT NULL, 
+        endereco_de_coleta VARCHAR(255) NOT NULL,
+        endereco_de_entrega VARCHAR(255) NOT NULL,
+        data_coleta DATE NOT NULL,
+        data_entrega DATE NOT NULL,
+        status_entrega VARCHAR(255) NOT NULL,
+        custo FLOAT,
+        FOREIGN KEY (id_produto) REFERENCES produtos (id_produto),
+        FOREIGN KEY (id_adm_empresa) REFERENCES adm_empresa_contratante (id_adm_empresa)
+    )
+""")
+
+banco.executarComando("""
+    INSERT INTO adm_empresa_contratante (nome, email, senha, endereco)
+        VALUES ("Heron", "heron@gmail.com", "852741963", "Rua S - 47")
+""")
+
+banco.inserirProdutos("1", "Xiaomi Mi 11 lite", "Celulares e Comunicação", "158 g - 16 x 7.5 x 0.68 cm", "./imagens/Xiaomi Mi 11 lite", "Celular Xiaomi Mi 11 lite NE 5G 256Gb Azul Versão Global")
+banco.inserirProdutos("2", "ACER Nitro 5 AN515-55-59T4", "Computadores e Informática", "3.49 kg - 25.5 x 36.34 x 2.43 cm", "./imagens/ACER Nitro 5 AN515-55-59T4", "ACER Notebook Gamer Nitro 5 AN515-55-59T4, Intel Core I5 10ª geração, 8GB, 512GB SDD, NVIDIA GTS 1650, Windows, preto, 15.6 Polegadas")
+banco.inserirProdutos(1, "Gel CIS TRIGEL, Estojo com 30", "Material para Escritório e Papelaria", "280 g - 17.4 x 12.4 x 4.8 cm", "./imagens/Gel CIS TRIGEL, Estojo com 30", "Caneta Gel CIS TRIGEL, Estojo com 30 unidades cores sortidas")
+banco.enviarProdutoParaColeta(1, 1, 56, "Rua A", "Rua B", "2022-05-06",  "2022-05-07", "Pendente", 53.50)

@@ -1,4 +1,3 @@
-from multiprocessing.reduction import send_handle
 import sqlite3
 
 class BD:
@@ -97,5 +96,4 @@ class BD:
 
 if __name__ == "__main__":
     banco = BD()
-    print(banco.receberNumeroDeRastreio(1))
     banco.fechar()

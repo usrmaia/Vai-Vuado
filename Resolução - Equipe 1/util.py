@@ -7,10 +7,20 @@ def visualizarProdutosDoAdm(id_adm_empresa):
     produtos = bd.visualizarProdutosDoAdm(id_adm_empresa)
 
     for produto in produtos:
-            print(f"1. ID do produto: {produto[0]}")
-            print(f"2. Nome do produto: {produto[2]}")
-            print(f"3. Categoria do produto: {produto[3]}")
-            print(f"4. Medidas do produto: {produto[4]}")
-            print(f"5. Imagem do produto: {produto[5]}")
-            print(f"6. Descrição do produto: {produto[6]}")
+            print(f"1. ID: {produto[0]}")
+            print(f"2. {produto[2]}")
+            print(f"3. {produto[3]}")
+            print(f"4. {produto[4]}")
+            print(f"5. {produto[5]}")
+            print(f"6. {produto[6]}")
             print("")
+
+def exibirInformacoesDeProduto(produto, mensagem):
+    print(f"""
+        1. {produto[0]}
+        2. {produto[1]}
+        3. {produto[2]}
+        4. {produto[3]}
+        5. {produto[4]}
+        {mensagem}
+    """)

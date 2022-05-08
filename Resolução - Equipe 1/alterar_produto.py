@@ -1,20 +1,16 @@
-from ast import match_case
-from math import prod
-from operator import truediv
-import bd_vai_vuado, login_adm
-
-bd = bd_vai_vuado.BD()
-id_adm_empresa = 1
+import bd_vai_vuado, util
 
 class Alterar():
-    def __init__(self):
-        self.opcao = []
+    def __init__(self, id_adm_empresa, bd):
         self.id_produto = []
         self.nome = []
         self.categoria = []
         self.medidas = []
         self.imagem = []
         self.descricao = []
+        self.bd = bd
+        self.id_adm_empresa = id_adm_empresa
+        self.opcao = []
 
     
     def exibirTela(self):
@@ -25,31 +21,13 @@ class Alterar():
             4. Voltar
         """)
     
-    def retornarOpcao(self):
-        try:
-            self.opcao = int(self.opcao)
-        except:
-            self.opcao = -1
-            
-        return self.opcao
-    
     def exibirProdutos(self):
-        produtos = bd.visualizarProdutosDoAdm(id_adm_empresa)
-
-        for produto in produtos:
-            print(f"1. ID do produto: {produto[0]}")
-            print(f"2. Nome do produto: {produto[2]}")
-            print(f"3. Categoria do produto: {produto[3]}")
-            print(f"4. Medidas do produto: {produto[4]}")
-            print(f"5. Imagem do produto: {produto[5]}")
-            print(f"6. Descrição do produto: {produto[6]}")
-            print("")
+        util.visualizarProdutosDoAdm(self.id_adm_empresa)
         
         self.id_produto = input("Digite o ID do produto que deseja alterar: ")
         # Aplicar tratamento em self.id_produto (id existente)
     
     def alterarProduto(self):
-
         produto = bd.visualizarProduto(int(self.id_produto), id_adm_empresa)
         self.nome = produto[0][2]
         self.categoria = produto[0][3]
@@ -58,13 +36,7 @@ class Alterar():
         self.descricao = produto[0][6]
 
         while(True):
-            print(f"1. Nome do produto: {self.nome}")
-            print(f"2. Categoria do produto: {self.categoria}")
-            print(f"3. Medidas do produto: {self.medidas}")
-            print(f"4. Imagem do produto: {self.imagem}")
-            print(f"5. Descrição do produto: {self.descricao}")
-            print(f"0. Sair")
-
+            util.exibirInformacoesDeProduto([self.nome, self.categoria, self.medidas, self.imagem, self.descricao] , "0. Voltar")
             self.opcao = input("Informe o que deseja alterar: ")
 
             match self.opcao:
@@ -83,6 +55,8 @@ class Alterar():
 
 
 if __name__ == "__main__":
-    alterar = Alterar()
+    bd = bd_vai_vuado.BD()
+    id_adm_empresa = 1
+    alterar = Alterar(id_adm_empresa, bd)
     alterar.exibirProdutos()
     alterar.alterarProduto()

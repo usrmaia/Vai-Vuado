@@ -42,5 +42,5 @@ class Exclui():
 if __name__ == "__main__":
     bd = bd_vai_vuado.BD()
     id_adm_empresa = 1
-    excluir = Excluir(id_adm_empresa, bd)
+    excluir = Exclui(id_adm_empresa, bd)
     excluir.excluirProduto()

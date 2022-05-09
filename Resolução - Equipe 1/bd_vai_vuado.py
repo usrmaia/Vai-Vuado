@@ -110,6 +110,13 @@ class BD:
                 return False
         except sqlite3.Error as erro:
             print(f"Error: {erro}")
+    
+    def retornarEnderecoAdmEmpresa(self, id_adm_empresa):
+        try:
+            self.cursor.execute(f"select endereco from adm_empresa_contratante where id_adm_empresa = '{id_adm_empresa}'")
+            return self.cursor.fetchall()[0][0]
+        except sqlite3.Error as erro:
+            print(f"Error: {erro}")
 
     def confirmarSenha(self, id_adm_empresa, senha):
         try:

@@ -5,7 +5,7 @@ if __name__ == "__main__":
     login = login_adm.Login(bd)
 
     if login.realizarLogin():
-        menu = tela_principal.Menu(login.retornarID(), bd)
-        menu.exibirMenu()
+        home = tela_principal.Menu(login.retornarID(), bd, login.retornarEndereco())
+        home.exibirMenu()
     
     bd.fechar()

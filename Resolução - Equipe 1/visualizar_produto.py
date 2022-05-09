@@ -7,19 +7,23 @@ class Visualizar():
         self.id_adm_empresa = id_adm_empresa
 
     def pesquisarProdutoPeloNome(self):
-        self.nome = input("Busque por algum produto pelo nome: ")
-        produtos = self.bd.visualizarProdutosDoAdm(self.id_adm_empresa)
+        while(True):
+            self.nome = input("Busque por algum produto pelo nome: ")
+            produtos = self.bd.visualizarProdutosDoAdm(self.id_adm_empresa)
 
-        for produto in produtos:
-            if self.nome in produto[2]:
-                print(f"""
-                    1. ID: {produto[1]}
-                    2. {produto[2]}
-                    3. {produto[3]}
-                    4. {produto[4]}
-                    5. {produto[5]}
-                    6. {produto[6]}
-                """)
+            for produto in produtos:
+                if self.nome in produto[2]:
+                    print(f"""
+                        1. ID:          {produto[1]}
+                        1. Nome:        {produto[2]}
+                        2. Categoria:   {produto[3]}
+                        3. Medidas:     {produto[4]}
+                        4. Imagem:      {produto[5]}
+                        5. Descrição:   {produto[6]}
+                    """)
+            
+            opcao = input("Pesquisar novamente? [s/n]")
+            if not (opcao in "Ss"): break 
     
 if __name__ == "__main__":
     bd = bd_vai_vuado.BD()

@@ -11,9 +11,10 @@ class Excluir():
         util.visualizarProdutosDoAdm(self.id_adm_empresa)
         #aplicar pesquisa
         self.id_produto = input("Informe o ID de um produto para exclusão ou 0 para cancelar/voltar: ")
-        if self.id_produto != "0":
-            produto = self.bd.visualizarProduto(self.id_produto, id_adm_empresa)
 
+        if self.id_produto != "0":
+            
+            produto = self.bd.visualizarProduto(self.id_produto, id_adm_empresa)
             nome = produto[0][2]
             categoria = produto[0][3]
             medidas = produto[0][4]

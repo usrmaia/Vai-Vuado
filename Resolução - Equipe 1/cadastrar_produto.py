@@ -1,6 +1,6 @@
 import bd_vai_vuado, util
 
-class Cadastrar():
+class Cadastro():
     def __init__(self, id_adm_empresa, bd):
         self.nome = []
         self.categoria = []
@@ -9,46 +9,57 @@ class Cadastrar():
         self.descricao = []
         self.bd = bd
         self.id_adm_empresa = id_adm_empresa
-        self.opcao = []
     
-    def cadastrarProduto(self):
+    def inserirInformacoesDoProduto(self):
+
         while(True):
 
-            util.exibirInformacoesDeProduto([self.nome, self.categoria, self.medidas, self.imagem, self.descricao], "0. Voltar")
-            self.opcao = input("Selecione uma opção: ")
+            util.exibirMenuDeProdutoSimples(self.nome, self.categoria, self.medidas, self.imagem, self.descricao)
+            opcao = input("Selecione uma opção: ")
 
-            match self.opcao:
+            match opcao:
                 case "1": self.nome = input("Informe o nome do produto: ")
                 case "2": self.categoria = input("Informe a categoria do produto: ") 
                 case "3": self.medidas = input("Informe as medidas do produto (peso - largura x altura x profundidade): ")
                 case "4": self.imagem = input("Informe o link para imagem do produto: ")
                 case "5": self.descricao = input("Informe uma descrição para o produto: ")
                 case _: break
+    
+    def validarCadastroDeProduto(self):
 
-        # "validar produto"
+        dados = [self.nome, self.categoria, self.medidas, self.imagem, self.descricao]
+        
+        for dado in dados:
 
-        self.opcao = input("""
-                1. Confirmar
-                2. Limpar Dados
-                3. Cancelar
-                0. Voltar
+            if len(dado) == 0: 
+                print("Há dado(s) não cadastrado(s)!")
 
-        """)
+                return False
+        
+        return True
+    
+    def confirmarCadastro(self):
+        opcao = input("""
 
-        match self.opcao:
+                        1. Confirmar
+                        2. Limpar Dados
+                        3. Cancelar
+                        0. Voltar
+
+                        Selecione uma opção: 
+
+                """)
+
+        match opcao:
             case "1": 
                 self.bd.inserirProduto(self.id_adm_empresa, self.nome, self.categoria, self.medidas, self.imagem, self.descricao)
             case "2":
-                self.nome = []
-                self.categoria = []
-                self.medidas = []
-                self.imagem = []
-                self.descricao = []
-            case "3": pass
+                self.nome = self.categoria = self.medidas = self.imagem = self.descricao = []
+                return "Limpar Dados"
             case _: pass
-
+            
 if __name__ == "__main__":
     bd = bd_vai_vuado.BD()
     id_adm_empresa = 1
-    cadastrar = Cadastrar(id_adm_empresa, bd)
-    cadastrar.cadastrarProduto()
+    cadastro = Cadastro(id_adm_empresa, bd)
+    cadastro.cadastrarProduto()

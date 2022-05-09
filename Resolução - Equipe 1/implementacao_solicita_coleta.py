@@ -11,32 +11,43 @@ class Coleta():
         while(True):
 
             self.coleta.visualizarProdutosDoAdm()
+            self.coleta.redefinirVariaveis()
             self.coleta.editarColetaSimples()
 
-            if self.coleta.validarIdProduto():
+            if self.coleta.opcao == "5":
 
-                self.coleta.calcularNumeroDeRastreioCusto()
+                if self.coleta.validarIdProduto():
 
-                while(True):
+                    self.coleta.calcularNumeroDeRastreioCusto()
 
-                    self.coleta.exibirMenuDePreColetaCompleto()
+                    while(True):
 
-                    match self.coleta.opcao:
-                        case "5": self.coleta.editarMenuPreColeta()
-                        case "6": 
-                            self.coleta.obterStatusDoVaiVuado()
-                            operacao_bem_sucedida = self.coleta.solicitarColeta()
-                            
-                            if operacao_bem_sucedida: pass 
-                            else:
-                                if self.coleta.repetirColeta(): pass
-                                else: break
+                        self.coleta.exibirMenuDePreColetaCompleto()
 
-                        case _: break
+                        match self.coleta.opcao:
+                            case "5": self.coleta.editarMenuPreColeta()
+                            case "6": 
+                                self.coleta.obterStatusDoVaiVuado()
+                                operacao_bem_sucedida = self.coleta.solicitarColeta()
+                                
+                                if operacao_bem_sucedida: pass 
+                                else:
+                                    if self.coleta.repetirColeta(): pass
+                                    else: break
 
-            elif self.coleta.repetirColeta(): pass
-            else: break
+                            case _: break
 
+                else: 
+
+                    if self.coleta.repetirColeta(): pass
+                    else: break
+
+            else:
+
+                if self.coleta.repetirColeta(): pass
+                else: break
+
+            
 if __name__ == "__main__": 
     bd = bd_vai_vuado.BD()
     id_adm_empresa = 1

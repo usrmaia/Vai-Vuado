@@ -35,7 +35,7 @@ class Manter():
                 case "4": 
                     excluir = excluir_produto.Excluir(self.id_adm_empresa, self.bd)
                     excluir.excluirProduto()
-                case _: pass
+                case _: break
 
 if __name__ == "__main__": 
     pass

@@ -1,4 +1,4 @@
-import bd_vai_vuado
+import bd_vai_vuado, os
 
 def inserirEmailSenha(email = [], senha = []):
     while(True):
@@ -7,7 +7,7 @@ def inserirEmailSenha(email = [], senha = []):
 
             1. Email: {email}
             2. Senha: {senha}
-            0. Voltar
+            0. Sair 3. Confirmar
 
         Selecione uma opção: 
         """)
@@ -15,7 +15,9 @@ def inserirEmailSenha(email = [], senha = []):
         match opcao:
             case "1": email = input("Informe seu email: ")
             case "2": senha = input("Informe sua senha: ")
-            case _: break
+            case "3": break
+            case "0": os._exit(1)
+            case _: pass
 
     return email, senha
 

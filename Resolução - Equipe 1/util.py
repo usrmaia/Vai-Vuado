@@ -67,18 +67,5 @@ def exibirMenuDeProdutoSimples(nome, categoria, medidas, imagem, descricao):
 
     """)
 
-def exibirMenuDeProdutoCompleto(id_adm_empresa):
-
-    print(f"""
-
-                1. Nome:        {nome}
-                2. Categoria:   {categoria}
-                3. Medidas:     {medidas}
-                4. Imagem:      {imagem}
-                5. Descrição:   {descricao}
-                0. Voltar
-
-    """)
-
 if __name__ == "__main__":
     visualizarProdutosDoAdm(1)

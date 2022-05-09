@@ -27,7 +27,7 @@ class Coleta():
                 2. Endereço de Entrega: {self.endereco_de_entrega}
                 3. Data de Coleta: {self.data_coleta}
                 4. Data de Entrega: {self.data_entrega}
-                0. Voltar
+                0. Voltar  5. Confirmar
 
                 Selecione uma opção: 
 
@@ -90,6 +90,7 @@ class Coleta():
     def solicitarColeta(self):
         if self.status_entrega == "Aceito":
             self.bd.enviarProdutoParaColeta(self.id_produto, self.id_adm_empresa, self.numero_de_rastreio, self.endereco_de_coleta, self.endereco_de_entrega, self.data_coleta, self.data_entrega, self.status_entrega, self.custo)
+            print("Pedido aceito! ;)")
             return True
         else:
             print("Lamentamos, pedido não aceito!")
@@ -100,10 +101,13 @@ class Coleta():
         if self.opcao in "Ss": return True
         else: return False
     
+    def redefinirVariaveis(self):
+        self.id_produto = self.endereco_de_coleta = self.endereco_de_entrega = self.data_coleta = self.data_entrega = []
+    
 if __name__ == "__main__": 
     bd = bd_vai_vuado.BD()
     id_adm_empresa = 1
     #print(validarIdProduto("2", id_adm_empresa))
     #print(calcularNumeroDeRastreioCusto())
     coleta = Coleta(id_adm_empresa, bd, "Rua T - 58")
-    coleta.solicitarColeta()
+    coleta.redefinirVariaveis()

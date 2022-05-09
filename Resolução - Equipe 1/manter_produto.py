@@ -1,4 +1,4 @@
-import implementacao_cadastro, implementacao_altera, visualizar_produto, excluir_produto
+import implementacao_cadastro, implementacao_altera, visualizar_produto, implementacao_exclui_produto
 
 class Manter():
     def __init__(self, id_adm_empresa, bd):
@@ -33,7 +33,7 @@ class Manter():
                     visualizar = visualizar_produto.Visualizar(self.id_adm_empresa, self.bd)
                     visualizar.pesquisarProdutoPeloNome()
                 case "4": 
-                    excluir = excluir_produto.Excluir(self.id_adm_empresa, self.bd)
+                    excluir = implementacao_exclui_produto.Exclui(self.id_adm_empresa, self.bd)
                     excluir.excluirProduto()
                 case _: break
 

@@ -135,5 +135,5 @@ class BD:
 
 if __name__ == "__main__":
     banco = BD()
-    banco.inserirProduto(1, "aaaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaa")
+    print(type(banco.retornarIdAdmEmpresa("is@hotmail.com", "123456789")))
     banco.fechar()

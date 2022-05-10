@@ -38,6 +38,9 @@ class Coleta():
                 case "2": self.endereco_de_entrega = input("Informe o endereço de entrega: ")
                 case "3": self.data_coleta = input("Informe a data de coleta: ") 
                 case "4": self.data_entrega = input("Informe a data de entrega: ")
+                case "5": 
+                    self.opcao = "Confirmar"
+                    break
                 case _: break
     
     def validarIdProduto(self):
@@ -73,6 +76,10 @@ class Coleta():
                 Selecione uma opção: 
 
         """)
+
+        match self.opcao:
+            case "5": self.opcao = "Editar"
+            case "6": self.opcao = "Confirmar Coleta"
     
     def editarMenuPreColeta(self):
         self.opcao = input("Selecione uma opção: ")
@@ -102,7 +109,7 @@ class Coleta():
         else: return False
     
     def redefinirVariaveis(self):
-        self.id_produto = self.endereco_de_coleta = self.endereco_de_entrega = self.data_coleta = self.data_entrega = []
+        self.id_produto = self.endereco_de_entrega = self.data_coleta = self.data_entrega = []
     
 if __name__ == "__main__": 
     bd = bd_vai_vuado.BD()

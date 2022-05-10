@@ -18,7 +18,8 @@ class Altera():
 
     def selecionarIDDoProduto(self):
 
-        self.id_produto = input("Digite o ID do produto que deseja alterar ou 0 para sair: ")
+        print("0. Sair\n")
+        self.id_produto = input("Digite o ID do produto que deseja alterar: ")
         if self.id_produto == "0": return False
 
         return True

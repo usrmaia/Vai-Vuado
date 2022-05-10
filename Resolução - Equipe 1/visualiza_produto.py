@@ -29,7 +29,7 @@ class Visualiza():
 
                 print(f"""
 
-                    1. ID:          {produto[1]}
+                    1. ID:          {produto[0]}
                     1. Nome:        {produto[2]}
                     2. Categoria:   {produto[3]}
                     3. Medidas:     {produto[4]}
